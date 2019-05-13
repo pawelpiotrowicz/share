@@ -1,0 +1,59 @@
+1. github.com/NervanaSystems/ngraph-paddle.git 
+  vs
+2. https://github.com/PaddlePaddle/Paddle.git 
+
+
+
+Miss op {  sum :  18  } :
+ - cast_op
+ - dropout_op
+ - elementwise_div_op
+ - elementwise_mul_op
+ - gather_op
+ - increment_op
+ - isemepty_op
+ - label_smooth_op
+ - layer_norm_op
+ - lookup_table_op
+ - matmul_op
+ - one_hot_op
+ - reduce_sum_op
+ - reshepe_op
+ - slice_op
+ - stack_op 
+ - transpose_op 
+ - zeroslike_op
+
+
+ Changed { sum : 13 } :
+ - accuracy
+ - activation 
+ - binary_unary
+ - cross_entropy 
+ - elementwise_binary_prepare_node
+ - elementwise_node   
+ - elementwise_scalar 
+ - fill_constant
+ - mean_op
+ - momentum_op 
+ - mul 
+ - on_bridge 
+ - pool2d_op 
+  
+
+Equal:  { sum : 11 }
+- adam
+- batch_norm
+- concat
+- conv2d_
+- elementwise_add
+- lrn  
+- scale_op
+- softmax 
+- softmax_with_cross_entoropy
+- sum_op 
+- top_k 
+
+
+
+Total 42 op 
