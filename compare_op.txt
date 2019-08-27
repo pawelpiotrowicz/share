@@ -57,3 +57,31 @@ Equal:  { sum : 11 }
 
 
 Total 42 op 
+
+
+issues:
+
+elementwise_binary_prepare_node.
+
+pre:
+  axis = (rhs_shape.size() == 0) ? lhs_shape.size() - 1 : axis;
+  axis = (axis == -1 ? lhs_shape.size() - rhs_shape.size() : axis);
+post:
+
+
+  axis =  (rhs_shape.size()) ? axis :  lhs_shape.size() - 1  
+  axis =  (axis >= 0) ? axis :  lhs_shape.size() - rhs_shape.size();
+
+
+  if(rhs_shape.size()==0)
+       axis = lhs_shape.size() - 1;
+
+  if(axis == -1)
+       axis = lhs_shape.size() - rhs_shape.size();
+            
+  
+
+
+issues:
+   std::iota(std::begin(bcast_order), std::end(bcast_order), 0);
+  
