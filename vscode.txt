@@ -1,0 +1,72 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+
+            "name": "(gdb) NGRAPH_CUSTOM Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/usr/bin/python2.7",
+            "args": ["/nvm/dyshape/ngraph-paddle/tools/test_runner.py", "test_matmul_ngraph_op"],
+            "stopAtEntry": false,
+            "cwd": "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/tests/unittests/ngraph",
+            "environment": [{ "name" : "NGRAPH_CUSTOM_MATMUL" , "value" : "true"}, { "name" : "PYTHONPATH" , "value" : "/nvm/dyshape/ngraph-paddle/build/python"} , { "name" : "FLAGS_use_ngraph" , "value" :"true" }],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+
+            "name": "(gdb) NGRAPH_DEFAULT Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/usr/bin/python2.7",
+            "args": ["/nvm/dyshape/ngraph-paddle/tools/test_runner.py", "test_matmul_ngraph_op"],
+            "stopAtEntry": false,
+            "cwd": "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/tests/unittests/ngraph",
+            "environment": [ { "name" : "PYTHONPATH" , "value" : "/nvm/dyshape/ngraph-paddle/build/python"} , { "name" : "FLAGS_use_ngraph" , "value" :"true" }],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "python matmul_grad",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/usr/bin/python2.7",
+            "args": ["/nvm/dyshape/ngraph-paddle/tools/test_runner.py", "test_matmul_ngraph_op"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/tests/unittests/ngraph",
+            "environment": [ {"PYTHONPATH" : "/nvm/dyshape/ngraph-paddle/build/python", "FLAGS_use_ngraph" : "true" }
+ 
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "g++ build active file",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}
