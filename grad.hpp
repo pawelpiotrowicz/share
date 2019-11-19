@@ -1,3 +1,60 @@
+631: ERROR: test_check_grad_ignore_x (test_matmul_op.TestMatMulOp_dimX_1_dim_Y_1_transX_False_transY_False)
+631: ----------------------------------------------------------------------
+631: Traceback (most recent call last):
+631:   File "../test_matmul_op.py", line 108, in test_check_grad_ignore_x
+631:     ['Y'], 'Out', max_relative_error=1e-3, no_grad_set=set("X"))
+631:   File "../op_test.py", line 920, in check_grad
+631:     user_defined_grads)
+631:   File "../op_test.py", line 965, in check_grad_with_place
+631:     output_names, no_grad_set)
+631:   File "../op_test.py", line 1044, in _get_gradient
+631:     executor.run(prog, feed_dict, fetch_list, return_numpy=False)))
+631:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 739, in run
+631:     six.reraise(*sys.exc_info())
+631:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 734, in run
+631:     use_program_cache=use_program_cache)
+631:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 781, in _run_impl
+631:     use_program_cache=use_program_cache)
+631:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 858, in _run_program
+631:     fetch_var_name)
+631: IndexError: deque::_M_range_check: __n (which is 1)>= this->size() (which is 1)
+
+
+163│ void Node::set_arguments(const OutputVector& arguments)
+164│ {
+165│     // Add this node as a user of each argument.
+166│     size_t i = 0;
+167│     for (auto& output : arguments)
+168│     {
+169│         auto output_node = output.get_node();
+170├>        auto& output_descriptor = output_node->get_outputs().at(output.get_index());
+171│         m_inputs.emplace_back(this, i++, output_descriptor);
+172│     }
+173│ }
+174│
+
+(gdb) print output.get_index()
+$1 = 1
+(gdb) p output_descriptor
+$2 = (ngraph::descriptor::Output &) @0x5ffff9210: <error reading variable>
+(gdb) p output_node->get_outputs()
+$3 = std::deque with 1 elements = {{m_node = 0x4252ec0, m_index = 0, m_tensor = std::shared_ptr (count 1, weak 0) 0x4263570, m_inputs = std::vector of length 1, capacity 1 = {0x4282be0}}}
+(gdb) 
+
+
+ if (is_dy)
+  {   
+    std::shared_ptr<ngraph::Node> dy_t = std::make_shared<ngraph::op::GetOutputElement>(fused_op, 1); <=== here
+    auto dy_scale = ElementwiseScalar<ngraph::op::Multiply>(1 / alpha, dy_t);
+    paddle::platform::SetOutputNode(op, "Y@GRAD", fused_op, ngb_node_map);
+ }
+
+
+
+
+#############################################################
+
+
 
 
 void BuildMatMulGradDynamic(
