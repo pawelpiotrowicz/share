@@ -1,0 +1,48 @@
+663: ======================================================================
+663: ERROR: test_propram (test_matmul_op.TestMatMulAPI_dimX_3_dim_Y_3_transX_True_transY_False)
+663: ----------------------------------------------------------------------
+663: Traceback (most recent call last):
+663:   File "../test_matmul_op.py", line 166, in test_negative_dims_program
+663:     fetch_list=[output])
+663:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 774, in run
+663:     six.reraise(*sys.exc_info())
+663:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 769, in run
+663:     use_program_cache=use_program_cache)
+663:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 816, in _run_impl
+663:     use_program_cache=use_program_cache)
+663:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 890, in _run_program
+663:     fetch_var_name)
+663: RuntimeError: unsupported type
+663: 
+663: ======================================================================
+663: ERROR: test_propram (test_matmul_op.TestMatMulAPI_dimX_3_dim_Y_3_transX_True_transY_True)
+663: ----------------------------------------------------------------------
+663: Traceback (most recent call last):
+663:   File "../test_matmul_op.py", line 166, in test_negative_dims_program
+663:     fetch_list=[output])
+663:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 774, in run
+663:     six.reraise(*sys.exc_info())
+663:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 769, in run
+663:     use_program_cache=use_program_cache)
+663:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 816, in _run_impl
+663:     use_program_cache=use_program_cache)
+663:   File "/nvm/dyshape/ngraph-paddle/build/python/paddle/fluid/executor.py", line 890, in _run_program
+663:     fetch_var_name)
+663: RuntimeError: unsupported type
+663: 
+663: ----------------------------------------------------------------------
+663: Ran 197 tests in 12.516s
+663: 
+663: FAILED (errors=36)
+663: 
+1/1 Test #663: test_matmul_ngraph_op ............***Failed   13.52 sec
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =  13.55 sec
+
+The following tests FAILED:
+	663 - test_matmul_ngraph_op (Failed)
+Errors while running CTest
+
+
