@@ -1,0 +1,33 @@
+
+
+if(MKL)
+   message(STATUS "Enabling MKL")
+   if( "${MKL_ROOT}" STREQUAL "")
+     if(EXISTS $ENV{HOME}/intel/mkl)
+     set(MKL_ROOT $ENV{HOME}/intel/mkl)
+     message(STATUS "Found default mkl installation in ${MKL_ROOT}")
+     else()
+     message(FATAL_ERROR "MKL is not found , please set -DMKL_ROOT=/your/path !")
+     endif()     
+   endif()   
+   add_definitions(-DUSE_MKL)
+   add_definitions(-DMKL_ENABLED=1)
+   include_directories("${MKL_ROOT}/include")
+   set(MKL_VER_FILE ${MKL_ROOT}/include/mkl_version.h)   
+   if(NOT EXISTS ${MKL_VER_FILE})
+   message(FATAL_ERROR "Incorrect MKL_ROOT file not found ${MKL_VER_FILE}")
+   endif()
+
+   set(MKL_LIB_DIR "/home/pawepiot/intel/compilers_and_libraries_2020.1.217/linux/mkl/lib/intel64_lin")
+
+   set(F_LIBS mkl_intel_lp64 mkl_intel_thread mkl_core)   
+   foreach(X IN LISTS F_LIBS)
+   if(NOT EXISTS ${MKL_LIB_DIR}/lib${X}.so)
+   message(FATAL_ERROR " lib${X}.so not found in ${MKL_LIB_DIR}")
+   endif()   
+   endforeach()   
+   link_directories(${MKL_LIB_DIR})
+   list(APPEND DGL_LINKER_LIBS ${F_LIBS} iomp5)
+endif(MKL)
+
+
